@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_transpose_test_1) {
   matrix_t A = {0};
@@ -20,7 +20,7 @@ START_TEST(s21_transpose_test_1) {
     }
   }
   int res = s21_transpose(&A, &B);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &B), SUCCESS);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
@@ -44,7 +44,7 @@ START_TEST(s21_transpose_test_2) {
     }
   }
   int res = s21_transpose(&A, &B);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &B), SUCCESS);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
@@ -61,7 +61,7 @@ START_TEST(s21_transpose_test_3) {
   s21_create_matrix(cols, rows, &C);
 
   matrix_t D = {0};
-  ck_assert_int_eq(s21_transpose(&A, &D), INCORRECT_MATRIX);
+  ck_assert_int_eq(s21_transpose(&A, &D), S21_ERROR);
 
   s21_remove_matrix(&A);
   s21_remove_matrix(&C);

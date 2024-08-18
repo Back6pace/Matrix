@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_eq_test_1) {
   matrix_t A = {0};

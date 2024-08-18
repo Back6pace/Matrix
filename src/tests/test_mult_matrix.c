@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_mul_matrix_test_1) {
   int rows = 4;
@@ -26,7 +26,7 @@ START_TEST(s21_mul_matrix_test_1) {
   }
 
   matrix_t D = {0};
-  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), OK);
+  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &D), SUCCESS);
 
   s21_remove_matrix(&A);
@@ -58,7 +58,7 @@ START_TEST(s21_mul_matrix_test_2) {
   C.matrix[1][1] = 154;
 
   matrix_t D = {0};
-  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), OK);
+  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &D), SUCCESS);
 
   s21_remove_matrix(&A);
@@ -82,7 +82,7 @@ START_TEST(s21_mul_matrix_test_3) {
   s21_create_matrix(A.rows, B.columns, &C);
 
   matrix_t D = {0};
-  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), INCORRECT_MATRIX);
+  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), S21_ERROR);
 
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
@@ -105,7 +105,7 @@ START_TEST(s21_mul_matrix_test_4) {
   s21_create_matrix(A.rows, B.columns, &C);
 
   matrix_t D = {0};
-  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), FAILED_MATRIX);
+  ck_assert_int_eq(s21_mult_matrix(&A, &B, &D), S21_CALC_ERROR);
 
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);

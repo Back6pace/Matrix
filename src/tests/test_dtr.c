@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_dtr_test_1) {
   const int size = 5;
@@ -10,7 +10,7 @@ START_TEST(s21_dtr_test_1) {
   double res = 0;
   int error = s21_determinant(&A, &res);
   ck_assert_double_eq_tol(res, 0, 1e-6);
-  ck_assert_int_eq(error, OK);
+  ck_assert_int_eq(error, S21_OK);
 
   s21_remove_matrix(&A);
 }
@@ -27,7 +27,7 @@ START_TEST(s21_dtr_test_2) {
   double res = 0;
   int error = s21_determinant(&A, &res);
   ck_assert_double_eq_tol(res, 0, 1e-6);
-  ck_assert_int_eq(error, OK);
+  ck_assert_int_eq(error, S21_OK);
 
   s21_remove_matrix(&A);
 }
@@ -57,8 +57,24 @@ START_TEST(s21_dtr_test_3) {
   double res = 0;
   int error = s21_determinant(&A, &res);
   ck_assert_double_eq_tol(res, 2480, 1e-6);
-  ck_assert_int_eq(error, OK);
+  ck_assert_int_eq(error, S21_OK);
 
+  s21_remove_matrix(&A);
+}
+END_TEST
+
+START_TEST(s21_determinant_04) {
+  double determ = 0.0;
+  matrix_t A = {0};
+
+  s21_create_matrix(2, 2, &A);
+  A.matrix[0][0] = -677700.0;
+  A.matrix[0][1] = 654.0;
+  A.matrix[1][0] = 2.0;
+  A.matrix[1][1] = -0.00001;
+
+  s21_determinant(&A, &determ);
+  ck_assert_double_eq(determ, -1301.223);
   s21_remove_matrix(&A);
 }
 END_TEST
@@ -69,6 +85,7 @@ Suite *test_dtr() {
   tcase_add_test(tc, s21_dtr_test_1);
   tcase_add_test(tc, s21_dtr_test_2);
   tcase_add_test(tc, s21_dtr_test_3);
+  tcase_add_test(tc, s21_determinant_04);
   suite_add_tcase(s, tc);
   return s;
 }

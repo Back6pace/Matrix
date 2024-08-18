@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_sum_test_1) {
   int rows = rand() % 100 + 1;
@@ -19,7 +19,7 @@ START_TEST(s21_sum_test_1) {
   }
 
   matrix_t res = {0};
-  ck_assert_int_eq(s21_sum_matrix(&m1, &m2, &res), OK);
+  ck_assert_int_eq(s21_sum_matrix(&m1, &m2, &res), S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&check, &res), SUCCESS);
   s21_remove_matrix(&m1);
   s21_remove_matrix(&m2);
@@ -50,7 +50,7 @@ START_TEST(s21_sum_test_2) {
   }
 
   matrix_t res = {0};
-  ck_assert_int_eq(s21_sum_matrix(&m, &mtx, &res), FAILED_MATRIX);
+  ck_assert_int_eq(s21_sum_matrix(&m, &mtx, &res), S21_CALC_ERROR);
   s21_remove_matrix(&m);
   s21_remove_matrix(&mtx);
   s21_remove_matrix(&res);
@@ -71,7 +71,7 @@ START_TEST(s21_sum_test_3) {
 
   matrix_t res = {0};
 
-  ck_assert_int_eq(s21_sum_matrix(&m, &mtx, &res), INCORRECT_MATRIX);
+  ck_assert_int_eq(s21_sum_matrix(&m, &mtx, &res), S21_ERROR);
   s21_remove_matrix(&m);
   s21_remove_matrix(&mtx);
   s21_remove_matrix(&res);

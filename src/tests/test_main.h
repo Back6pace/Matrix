@@ -8,7 +8,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#include "../src/s21_matrix.h"
+#include "../s21_matrix.h"
 
 Suite* test_sum();
 Suite* test_sub();

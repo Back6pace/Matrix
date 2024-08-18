@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 double get_rand(double min, double max) {
   double val = (double)rand() / RAND_MAX;

@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_mul_num_test_1) {
   matrix_t A = {0};
@@ -16,7 +16,7 @@ START_TEST(s21_mul_num_test_1) {
     }
   }
   int res = s21_mult_number(&A, value, &B);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &B), SUCCESS);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
@@ -40,7 +40,7 @@ START_TEST(s21_mul_num_test_2) {
     }
   }
   int res = s21_mult_number(&A, value, &B);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &B), SUCCESS);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
@@ -54,7 +54,7 @@ START_TEST(s21_mul_num_test_3) {
   matrix_t C = {0};
   double value = 0;
   int res = s21_mult_number(&A, value, &B);
-  ck_assert_int_eq(res, INCORRECT_MATRIX);
+  ck_assert_int_eq(res, S21_ERROR);
   ck_assert_int_eq(s21_eq_matrix(&C, &B), FAILURE);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);

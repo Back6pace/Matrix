@@ -1,4 +1,4 @@
-#include "test.h"
+#include "test_main.h"
 
 START_TEST(s21_sub_test_1) {
   matrix_t A = {0};
@@ -16,7 +16,7 @@ START_TEST(s21_sub_test_1) {
   }
   int res = s21_sub_matrix(&A, &B, &D);
   ck_assert_int_eq(s21_eq_matrix(&C, &D), SUCCESS);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
   s21_remove_matrix(&C);
@@ -35,7 +35,7 @@ START_TEST(s21_sub_test_2) {
   const int columns_b = rand() % 100 + 1;
   s21_create_matrix(rows_b, columns_b, &B);
   int res = s21_sub_matrix(&A, &B, &D);
-  ck_assert_int_eq(res, FAILED_MATRIX);
+  ck_assert_int_eq(res, S21_CALC_ERROR);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
   s21_remove_matrix(&D);
@@ -53,7 +53,7 @@ START_TEST(s21_sub_test_3) {
   s21_create_matrix(rows, columns, &B);
   s21_create_matrix(rows, columns, &C);
   int res = s21_sub_matrix(&A, &B, &D);
-  ck_assert_int_eq(res, INCORRECT_MATRIX);
+  ck_assert_int_eq(res, S21_ERROR);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
   s21_remove_matrix(&D);
@@ -79,7 +79,7 @@ START_TEST(s21_sub_test_4) {
     }
   }
   int res = s21_sub_matrix(&A, &B, &D);
-  ck_assert_int_eq(res, OK);
+  ck_assert_int_eq(res, S21_OK);
   ck_assert_int_eq(s21_eq_matrix(&C, &D), SUCCESS);
   s21_remove_matrix(&A);
   s21_remove_matrix(&B);
